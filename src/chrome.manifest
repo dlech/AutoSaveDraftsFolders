@@ -1,0 +1,4 @@
+content   asdf                 chrome/content/
+skin      asdf   classic/1.0   chrome/skin/
+locale    asdf   en-US         chrome/locale/en-US/
+overlay	chrome://messenger/content/am-copiesOverlay.xul		chrome://asdf/content/asdfCopiesFoldersOverlay.xul

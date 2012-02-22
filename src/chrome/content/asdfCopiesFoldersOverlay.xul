@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE overlay [
+<!ENTITY % asdfCopiesFoldersDTD SYSTEM "chrome://asdf/locale/asdfCopiesFoldersOverlay.dtd"> %asdfCopiesFoldersDTD;
+<!ENTITY % amCopiesDTD SYSTEM "chrome://messenger/locale/am-copies.dtd"> %amCopiesDTD;
+<!ENTITY % msgFolderPickerDTD SYSTEM "chrome://messenger/locale/msgFolderPickerOverlay.dtd"> %msgFolderPickerDTD;
+]>
+<overlay id="asdfCopiesFoldersOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="asdfCopiesFoldersOverlay.js"/>
+  <vbox id="copiesAndFolders">
+    <label hidden="true" wsm_persist="true" 
+	    id="identity.asdfAutoSaveDraftFolder" 
+		pref="true" preftype="string" prefattribute="value" 
+		prefstring="extensions.asdf.%identitykey%.autoSaveDraftFolder"/>
+	<label hidden="true" wsm_persist="true" 
+	    id="identity.asdfAutoSaveDraftsFolderPickerMode" 
+		pref="true" preftype="int" prefattribute="value" 
+		prefstring="extensions.asdf.%identitykey%.autoSaveDraftsFolderPickerMode"/>
+  </vbox>
+  <groupbox id="foldersGroup">
+    <hbox align="center">
+      <label value="&asdfAutoSaveKeepDrafts.label;" control="asdfAutoSaveDrafts"/>
+    </hbox>
+    <radiogroup id="asdfAutoSaveDrafts">
+      <grid class="specialFolderPickerGrid">
+        <columns>
+          <column/>
+          <column flex="1"/>
+        </columns>
+        <rows>
+          <row align="center">
+            <radio id="asdfAutoSaveDraft_selectAccount"
+                oncommand="asdf.setPickersState('asdfAutoSaveDraftsAccountPicker', 'asdfAutoSaveDraftsFolderPicker', event)"
+                value="0" label="&draftsFolderOn.label;"
+                accesskey="&draftsFolderOn.accesskey;"/>
+            <menulist id="asdfAutoSaveDraftsAccountPicker"
+                aria-labelledby="asdfAutoSaveDraft_selectAccount"
+                oncommand="asdf.noteSelectionChange('Account', event)">
+              <menupopup id="msgDraftAccountPopup" type="folder" mode="filing"
+                  expandFolders="false"/>
+            </menulist>
+          </row>
+          <row align="center">
+            <radio id="asdfAutoSaveDraft_selectFolder"
+                oncommand="asdf.setPickersState('asdfAutoSaveDraftsFolderPicker', 'asdfAutoSaveDraftsAccountPicker', event)"
+                value="1" label="&draftInOtherFolder.label;"
+                accesskey="&draftInOtherFolder.accesskey;"/>
+            <menulist id="asdfAutoSaveDraftsFolderPicker"
+                aria-labelledby="asdfAutoSaveDraft_selectFolder"
+                oncommand="asdf.noteSelectionChange('Folder', event)">
+             <menupopup id="msgDraftFolderPopup" type="folder" mode="filing"
+                  class="menulist-menupopup"
+                  showFileHereLabel="true"
+                  fileHereLabel="&filemessageschoosethis.label;"/>
+            </menulist>
+          </row>
+        </rows>
+      </grid>
+    </radiogroup>
+  </groupbox>
+</overlay>
