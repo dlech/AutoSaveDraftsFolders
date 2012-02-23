@@ -1,5 +1,0 @@
-<?xml version="1.0" ?>  
-<!DOCTYPE overlay SYSTEM "chrome://asdf/locale/asdfOptions.dtd">
-<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">  
-  <setting pref="extensions.asdf.autoSaveDraftsInSeparateFolder" type="bool" title="&asdfUseSeperateAutoSaveDraftsFolder;" />  
-</vbox> 
