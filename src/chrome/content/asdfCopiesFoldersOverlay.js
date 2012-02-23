@@ -53,6 +53,7 @@ var asdf = {
     var radioGroup = checkedElem.radioGroup.getAttribute("id");
     var picker;
 	gAutoSaveDraftsRadioElemChoice = modeValue;
+	gAutoSaveDraftsRadioElemChoice = modeValue;
     picker = document.getElementById("asdfAutoSaveDrafts" + type + "Picker");
 	picker.folder = folder;
     picker.setAttribute("label", folder.prettyName);
@@ -68,7 +69,7 @@ onInitCopiesAndFolders = function() {
                       "asdfAutoSaveDraftsAccountPicker",
                       "identity.asdfAutoSaveDraftFolder",
                       "asdfAutoSaveDraftsFolderPicker");
-}
+} // var asdf
 
 // override SetGlobalRadioElemChoices method
 asdf.base_SetGlobalRadioElemChoices = SetGlobalRadioElemChoices;

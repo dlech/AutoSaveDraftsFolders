@@ -16,7 +16,6 @@
                 <em:maxVersion>13.0a1</em:maxVersion>
             </Description>
         </em:targetApplication>
-        <em:aboutURL>chrome://asdf/content/asdfAbout.xul</em:aboutURL>
 		<em:optionsURL>chrome://asdf/content/asdfOptions.xul</em:optionsURL> 
 		<em:optionsType>2</em:optionsType>
     </Description>
