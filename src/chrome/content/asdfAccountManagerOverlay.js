@@ -1,5 +1,5 @@
 // override getValueArrayFor method
-asdf_base_getValueArrayFor = getValueArrayFor;  
+var asdf_base_getValueArrayFor = getValueArrayFor;  
 getValueArrayFor = function(account) {  
   // make sure this account has required attributes
   asdfTouchAccount(account);

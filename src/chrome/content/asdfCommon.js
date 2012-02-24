@@ -1,8 +1,14 @@
 // adds required generic attributes to account if they
 // do not already exist
-asdfTouchAccount = function(account) {
+var asdfTouchAccount = function(account) {
   try {  
     if (account) {
+	  // TODO check for local folders
+	  // this works for now
+	  if (!account.defaultIdentity)
+	    return;
+	  // TODO handle multiple identities
+	  
 	  // if asdfAutoSaveDraftFolder does not exist, 
 	  // create it an assign the value of the draft folder
       if (!account.defaultIdentity.getCharAttribute("asdfAutoSaveDraftFolder"))

@@ -5,7 +5,7 @@
 <!ENTITY % msgFolderPickerDTD SYSTEM "chrome://messenger/locale/msgFolderPickerOverlay.dtd"> %msgFolderPickerDTD;
 ]>
 <overlay id="asdfCopiesFoldersOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script src="asdfCopiesFoldersOverlay.js"/>
+  <script src="chrome://asdf/content/asdfCopiesFoldersOverlay.js"/>
   <vbox id="copiesAndFolders">
     <label hidden="true" wsm_persist="true" 
 	    id="identity.asdfAutoSaveDraftFolder" 
