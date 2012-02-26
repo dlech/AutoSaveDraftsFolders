@@ -17,13 +17,13 @@ var asdfUpdateDraftFolder = function() {
     if (!asdf_gDraftFolder)
       asdf_gDraftFolder = currentIdentity.draftFolder;  
     // uncomment alert for debuging
-    alert("Backedup folder is: " + asdf_gDraftFolder);
+    //alert("Backed-up folder is: " + asdf_gDraftFolder);
     // set autosave folder attributes in case user has not 
     asdfTouchAccount(currentIdentity);
     // set draft folder in user preferences
 	  currentIdentity.draftFolder = currentIdentity.getCharAttribute("asdfAutoSaveDraftFolder");   
     // uncomment alert for debuging
-    alert("Auto Save: " + currentIdentity.draftFolder);
+    //alert("Auto Save: " + currentIdentity.draftFolder);
   } catch(ex) {
     alert(ex);
   }
@@ -55,8 +55,15 @@ var asdf_gMsgComposeStateListener = {
         return;
       // restore backed up folder
       currentIdentity.draftFolder = asdf_gDraftFolder; 
+      asdf_gDraftFolder = null;
       // uncomment alert for debuging
       alert("Folder done:\n" + currentIdentity.draftFolder);
+      alert("saved folder:\n" + gMsgCompose.savedFolderURI);
+    }
+    try {
+      MailUtils.getFolderForURI(folderName, false).setFlag(Components.interfaces.nsMsgMessageFlags.Drafts);
+    } catch (ex) {
+      alert(ex);
     }
   },
   NotifyComposeBodyReady : function () {},
