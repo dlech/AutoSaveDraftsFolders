@@ -1,14 +1,17 @@
+var asdf_gAutoSaveDraftsRadioElemChoice;
+var asdf_gAutoSaveDraftsRadioElemChoiceLocked;
+
 var asdf = {
   onLoad: function() {
     // initialization code
     this.initialized = true;
     this.strings = document.getElementById("asdf-strings");	
-	// add support for preferences
-	this.prefs = Components.classes["@mozilla.org/preferences-service;1"]  
-         .getService(Components.interfaces.nsIPrefService)  
-         .getBranch("extensions.asdf.");  
-     this.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);  
-	 this.prefs.addObserver("", this, false); 	     
+    // add support for preferences
+    this.prefs = Components.classes["@mozilla.org/preferences-service;1"]  
+        .getService(Components.interfaces.nsIPrefService)  
+        .getBranch("extensions.asdf.");  
+    this.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);  
+	  this.prefs.addObserver("", this, false); 	     
   },
   
   onUnload: function() {    
@@ -38,7 +41,7 @@ var asdf = {
    switch (event.target.id) {     
      case "asdfAutoSaveDraft_selectAccount":
      case "asdfAutoSaveDraft_selectFolder":
-       gAutoSaveDraftsRadioElemChoice = radioElemValue;
+       asdf_gAutoSaveDraftsRadioElemChoice = radioElemValue;
        break;     
      default:
        dump("Error in setting picker state.\n");
@@ -52,10 +55,10 @@ var asdf = {
     var modeValue = checkedElem.value;
     var radioGroup = checkedElem.radioGroup.getAttribute("id");
     var picker;
-	gAutoSaveDraftsRadioElemChoice = modeValue;
-	gAutoSaveDraftsRadioElemChoice = modeValue;
+    asdf_gAutoSaveDraftsRadioElemChoice = modeValue;
+    asdf_gAutoSaveDraftsRadioElemChoice = modeValue;
     picker = document.getElementById("asdfAutoSaveDrafts" + type + "Picker");
-	picker.folder = folder;
+    picker.folder = folder;
     picker.setAttribute("label", folder.prettyName);
   }
 };
@@ -64,7 +67,7 @@ var asdf = {
 asdf.base_onInitCopiesAndFolders = onInitCopiesAndFolders;
 onInitCopiesAndFolders = function() {
   asdf.base_onInitCopiesAndFolders();
-  SetFolderDisplay(gAutoSaveDraftsRadioElemChoice, gAutoSaveDraftsRadioElemChoiceLocked,
+  SetFolderDisplay(asdf_gAutoSaveDraftsRadioElemChoice, asdf_gAutoSaveDraftsRadioElemChoiceLocked,
                       "asdfAutoSaveDraft",
                       "asdfAutoSaveDraftsAccountPicker",
                       "identity.asdfAutoSaveDraftFolder",
@@ -76,17 +79,17 @@ asdf.base_SetGlobalRadioElemChoices = SetGlobalRadioElemChoices;
 SetGlobalRadioElemChoices = function() {
   asdf.base_SetGlobalRadioElemChoices();
   var pickerModeElement = document.getElementById("identity.asdfAutoSaveDraftsFolderPickerMode");
-  gAutoSaveDraftsRadioElemChoice = pickerModeElement.getAttribute("value");
-  gAutoSaveDraftsRadioElemChoiceLocked = pickerModeElement.getAttribute("disabled");
-  if (!gAutoSaveDraftsRadioElemChoice) 
-    gAutoSaveDraftsRadioElemChoice = gDefaultPickerMode;
+  asdf_gAutoSaveDraftsRadioElemChoice = pickerModeElement.getAttribute("value");
+  asdf_gAutoSaveDraftsRadioElemChoiceLocked = pickerModeElement.getAttribute("disabled");
+  if (!asdf_gAutoSaveDraftsRadioElemChoice) 
+    asdf_gAutoSaveDraftsRadioElemChoice = gDefaultPickerMode;
 }
 
 // override onSaveCopiesAndFolders method
 asdf.base_onSaveCopiesAndFolders = onSaveCopiesAndFolders;
 onSaveCopiesAndFolders = function() {
   asdf.base_onSaveCopiesAndFolders();
-  SaveFolderSettings( gAutoSaveDraftsRadioElemChoice,
+  SaveFolderSettings( asdf_gAutoSaveDraftsRadioElemChoice,
                         "asdfAutoSaveDrafts",
                         gDraftsFolderWithDelim,
                         "asdfAutoSaveDraftsAccountPicker",

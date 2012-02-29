@@ -3,9 +3,10 @@ var asdf_base_getValueArrayFor = getValueArrayFor;
 getValueArrayFor = function(account) {  
   // make sure this account has required attributes
   try {
-    if (account) {      
-      for (var identity in fixIterator(account.identities, Components.interfaces.nsIMsgIdentity))
-        asdfTouchIdentity(identity);
+    if (account) {            
+      if (account.defaultIdentity) {
+        asdfTouchIdentity(account.defaultIdentity);
+      }
     }
   } catch (ex) {
     alert(ex);
