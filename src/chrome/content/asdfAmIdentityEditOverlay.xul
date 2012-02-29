@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<overlay id="asdfAmIdentityEditOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <script src="chrome://asdf/content/asdfCommon.js"/>  
+  <script src="chrome://asdf/content/asdfAmIdentityEditOverlay.js"/>  
+</overlay>

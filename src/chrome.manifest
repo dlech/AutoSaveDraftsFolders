@@ -3,4 +3,5 @@ skin      asdf   classic/1.0   chrome/skin/
 locale    asdf   en-US         chrome/locale/en-US/
 overlay	chrome://messenger/content/AccountManager.xul		chrome://asdf/content/asdfAccountManagerOverlay.xul
 overlay	chrome://messenger/content/am-copiesOverlay.xul		chrome://asdf/content/asdfCopiesFoldersOverlay.xul
+overlay	chrome://messenger/content/am-identity-edit.xul		chrome://asdf/content/asdfAmIdentityEditOverlay.xul
 overlay	chrome://messenger/content/messengercompose/messengercompose.xul		chrome://asdf/content/asdfMessengercomposeOverlay.xul
