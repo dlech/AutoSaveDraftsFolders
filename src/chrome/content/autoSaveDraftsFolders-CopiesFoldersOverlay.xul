@@ -4,27 +4,27 @@
 <!ENTITY % amCopiesDTD SYSTEM "chrome://messenger/locale/am-copies.dtd"> %amCopiesDTD;
 <!ENTITY % msgFolderPickerDTD SYSTEM "chrome://messenger/locale/msgFolderPickerOverlay.dtd"> %msgFolderPickerDTD;
 ]>
-<overlay id="asdfCopiesFoldersOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+<overlay id="autoSaveDraftsFolders-copiesFoldersOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
   <script src="chrome://autoSaveDraftsFolders/content/autoSaveDraftsFolders-CopiesFoldersOverlay.js"/>
   <vbox id="copiesAndFolders">
     <label hidden="true" wsm_persist="true" 
-	    id="identity.asdfAutoSaveDraftFolder" 
+	    id="identity.autoSaveDraftsFolders_AutoSaveDraftFolder" 
 		insertafter="identity.draftFolder"
 		pref="true" preftype="string" prefattribute="value" genericattr="true"
-		prefstring="extensions.asdf.%identitykey%.autoSaveDraftFolder"
+		prefstring="extensions.autoSaveDraftsFolders.%identitykey%.autoSaveDraftFolder"
 		/>
 	<label hidden="true" wsm_persist="true" 
-	    id="identity.asdfAutoSaveDraftsFolderPickerMode" 
+	    id="identity.autoSaveDraftsFolders_AutoSaveDraftsFolderPickerMode" 
 		insertafter="identity.draftsFolderPickerMode"
 		pref="true" preftype="int" prefattribute="value" genericattr="true"
-		prefstring="extensions.asdf.%identitykey%.autoSaveDraftsFolderPickerMode"
+		prefstring="extensions.autoSaveDraftsFolders.%identitykey%.autoSaveDraftsFolderPickerMode"
 		/>
   </vbox>
   <groupbox id="foldersGroup">
-    <hbox align="center" id="asdfAutoSaveDraftsLabel" insertafter="messageDrafts">
-      <label value="&asdfAutoSaveKeepDrafts.label;" control="asdfAutoSaveDrafts"/>
+    <hbox align="center" id="AutoSaveDraftsFolders_label" insertafter="messageDrafts">
+      <label value="&autoSaveDraftsFolders_keepDraftsIn.label;" control="autoSaveDraftsFolders_radioGroup"/>
     </hbox>
-    <radiogroup id="asdfAutoSaveDrafts" insertafter="asdfAutoSaveDraftsLabel">
+    <radiogroup id="autoSaveDraftsFolders_radioGroup" insertafter="AutoSaveDraftsFolders_label">
       <grid class="specialFolderPickerGrid">
         <columns>
           <column/>
@@ -32,25 +32,25 @@
         </columns>
         <rows>
           <row align="center">
-            <radio id="asdfAutoSaveDraft_selectAccount"
-                oncommand="asdf.setPickersState('asdfAutoSaveDraftsAccountPicker', 'asdfAutoSaveDraftsFolderPicker', event)"
+            <radio id="autoSaveDraftsFolders_selectAccount"
+                oncommand="autoSaveDraftsFolders.setPickersState('autoSaveDraftsFolders_AutoSaveDraftsAccountPicker', 'autoSaveDraftsFolders_AutoSaveDraftsFolderPicker', event)"
                 value="0" label="&draftsFolderOn.label;"
                 accesskey="&draftsFolderOn.accesskey;"/>
-            <menulist id="asdfAutoSaveDraftsAccountPicker"
-                aria-labelledby="asdfAutoSaveDraft_selectAccount"
-                oncommand="asdf.noteSelectionChange('Account', event)">
+            <menulist id="autoSaveDraftsFolders_AutoSaveDraftsAccountPicker"
+                aria-labelledby="autoSaveDraftsFolders_selectAccount"
+                oncommand="autoSaveDraftsFolders.noteSelectionChange('Account', event)">
               <menupopup id="msgDraftAccountPopup" type="folder" mode="filing"
                   expandFolders="false"/>
             </menulist>
           </row>
           <row align="center">
-            <radio id="asdfAutoSaveDraft_selectFolder"
-                oncommand="asdf.setPickersState('asdfAutoSaveDraftsFolderPicker', 'asdfAutoSaveDraftsAccountPicker', event)"
+            <radio id="autoSaveDraftsFolders_selectFolder"
+                oncommand="autoSaveDraftsFolders.setPickersState('autoSaveDraftsFolders_AutoSaveDraftsFolderPicker', 'autoSaveDraftsFolders_AutoSaveDraftsAccountPicker', event)"
                 value="1" label="&draftInOtherFolder.label;"
                 accesskey="&draftInOtherFolder.accesskey;"/>
-            <menulist id="asdfAutoSaveDraftsFolderPicker"
-                aria-labelledby="asdfAutoSaveDraft_selectFolder"
-                oncommand="asdf.noteSelectionChange('Folder', event)">
+            <menulist id="autoSaveDraftsFolders_AutoSaveDraftsFolderPicker"
+                aria-labelledby="autoSaveDraftsFolders_selectFolder"
+                oncommand="autoSaveDraftsFolders.noteSelectionChange('Folder', event)">
              <menupopup id="msgDraftFolderPopup" type="folder" mode="filing"
                   class="menulist-menupopup"
                   showFileHereLabel="true"

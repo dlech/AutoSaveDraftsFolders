@@ -1,16 +1,16 @@
 // override getValueArrayFor method
-var asdf_base_getValueArrayFor = getValueArrayFor;  
+var autoSaveDraftsFolders_base_getValueArrayFor = getValueArrayFor;  
 getValueArrayFor = function(account) {  
   // make sure this account has required attributes
   try {
     if (account) {            
       if (account.defaultIdentity) {
-        asdfTouchIdentity(account.defaultIdentity);
+        autoSaveDraftsFolders_TouchIdentity(account.defaultIdentity);
       }
     }
   } catch (ex) {
     alert(ex);
   }
   // call base method
-  return asdf_base_getValueArrayFor(account);
+  return autoSaveDraftsFolders_base_getValueArrayFor(account);
 }

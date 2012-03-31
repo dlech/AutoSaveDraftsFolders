@@ -1,14 +1,14 @@
 // adds required generic attributes to account if they
 // do not already exist
-var asdfTouchIdentity = function(identity) {
+var autoSaveDraftsFolders_TouchIdentity = function(identity) {
   try {      
 	  if (identity instanceof Components.interfaces.nsIMsgIdentity) {	    
-      // if asdfAutoSaveDraftFolder does not exist, 
+      // if autoSaveDraftsFolders_AutoSaveDraftFolder does not exist, 
       // create it an assign the value of the draft folder
-      if (!identity.getCharAttribute("asdfAutoSaveDraftFolder")) {
-        identity.setCharAttribute("asdfAutoSaveDraftFolder",
+      if (!identity.getCharAttribute("autoSaveDraftsFolders_AutoSaveDraftFolder")) {
+        identity.setCharAttribute("autoSaveDraftsFolders_AutoSaveDraftFolder",
             identity.draftFolder);			
-        identity.setIntAttribute("asdfAutoSaveDraftsFolderPickerMode",
+        identity.setIntAttribute("autoSaveDraftsFolders_AutoSaveDraftsFolderPickerMode",
             identity.draftsFolderPickerMode);
       }
     }

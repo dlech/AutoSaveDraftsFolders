@@ -1,8 +1,8 @@
 // used to remember drafts folder since we will be writing over it for autosave
-var asdf_gDraftFolderBackup;
-var asdf_gDraftFolderIdentityBackup;
+var autoSaveDraftsFolders_gDraftFolderBackup;
+var autoSaveDraftsFolders_gDraftFolderIdentityBackup;
 
-var asdfUpdateDraftFolder = function() {
+var autoSaveDraftsFolders_UpdateDraftFolder = function() {
   try {
     // get message save type
     var msgType = document.getElementById("msgcomposeWindow").getAttribute("msgtype");  
@@ -22,16 +22,16 @@ var asdfUpdateDraftFolder = function() {
     if(!currentIdentity)
       return;
     // backup drafts folder if it has not already been backed up
-    if (!asdf_gDraftFolderBackup) {
-      asdf_gDraftFolderBackup = currentIdentity.draftFolder;  
-      asdf_gDraftFolderIdentityBackup = currentIdentity;
+    if (!autoSaveDraftsFolders_gDraftFolderBackup) {
+      autoSaveDraftsFolders_gDraftFolderBackup = currentIdentity.draftFolder;  
+      autoSaveDraftsFolders_gDraftFolderIdentityBackup = currentIdentity;
     }
     // uncomment alert for debuging
-    //alert("Backed-up folder is: " + asdf_gDraftFolderBackup);
+    //alert("Backed-up folder is: " + autoSaveDraftsFolders_gDraftFolderBackup);
     // set autosave folder attributes in case user has not 
-    asdfTouchIdentity(currentIdentity);
+    autoSaveDraftsFolders_TouchIdentity(currentIdentity);
     // set draft folder in user preferences
-	  currentIdentity.draftFolder = currentIdentity.getCharAttribute("asdfAutoSaveDraftFolder");   
+	  currentIdentity.draftFolder = currentIdentity.getCharAttribute("autoSaveDraftsFolders_AutoSaveDraftFolder");   
     // uncomment alert for debuging
     //alert("Auto Save: " + currentIdentity.draftFolder);
   } catch(ex) {
@@ -39,7 +39,7 @@ var asdfUpdateDraftFolder = function() {
   }
 }
 
-var asdf_gSendListener = {
+var autoSaveDraftsFolders_gSendListener = {
   // nsIMsgSendListener
   onStartSending: function (aMsgID, aMsgSize) {}, // not used
   onProgress: function (aMsgID, aProgress, aProgressMax) {}, // not used
@@ -52,21 +52,21 @@ var asdf_gSendListener = {
   onSendNotPerformed: function (aMsgID, aStatus) {}, // not used
 };
 
-var asdf_gMsgComposeStateListener = {
+var autoSaveDraftsFolders_gMsgComposeStateListener = {
   NotifyComposeFieldsReady : function () {},
   ComposeProcessDone : function (aResult) {},
   SaveInFolderDone : function (folderName) {
     try {
       // if folder has been backed up
-      if (asdf_gDraftFolderBackup) {    
+      if (autoSaveDraftsFolders_gDraftFolderBackup) {    
         // can't do anything if we don't have an identity to work with
-        if(!asdf_gDraftFolderIdentityBackup)
+        if(!autoSaveDraftsFolders_gDraftFolderIdentityBackup)
           return;        
         // restore backed up folder
-        asdf_gDraftFolderIdentityBackup.draftFolder = asdf_gDraftFolderBackup; 
-        asdf_gDraftFolderBackup = null;
+        autoSaveDraftsFolders_gDraftFolderIdentityBackup.draftFolder = autoSaveDraftsFolders_gDraftFolderBackup; 
+        autoSaveDraftsFolders_gDraftFolderBackup = null;
         // uncomment alert for debuging
-        //alert("Folder done:\n" + asdf_gDraftFolderIdentityBackup.draftFolder);
+        //alert("Folder done:\n" + autoSaveDraftsFolders_gDraftFolderIdentityBackup.draftFolder);
         //alert("saved folder:\n" + gMsgCompose.savedFolderURI);
         // get folder object - should be auto save folder
         var folder = MailUtils.getFolderForURI(folderName, false);  
@@ -81,19 +81,19 @@ var asdf_gMsgComposeStateListener = {
 };
 
 // after init, we can add a message send listener  
-var asdfOnComposeWindowInit = function() {
-  gMsgCompose.addMsgSendListener(asdf_gSendListener);  
-  gMsgCompose.RegisterStateListener(asdf_gMsgComposeStateListener);
+var autoSaveDraftsFolders_OnComposeWindowInit = function() {
+  gMsgCompose.addMsgSendListener(autoSaveDraftsFolders_gSendListener);  
+  gMsgCompose.RegisterStateListener(autoSaveDraftsFolders_gMsgComposeStateListener);
 }
 
-var asdfOnComposeWindowUnload = function() {
-  gMsgCompose.removeMsgSendListener(asdf_gSendListener);  
-  gMsgCompose.UnregisterStateListener(asdf_gMsgComposeStateListener);
+var autoSaveDraftsFolders_OnComposeWindowUnload = function() {
+  gMsgCompose.removeMsgSendListener(autoSaveDraftsFolders_gSendListener);  
+  gMsgCompose.UnregisterStateListener(autoSaveDraftsFolders_gMsgComposeStateListener);
 }
 
 // listen for compose-window-init
-document.getElementById("msgcomposeWindow").addEventListener("compose-window-init", asdfOnComposeWindowInit, false);
+document.getElementById("msgcomposeWindow").addEventListener("compose-window-init", autoSaveDraftsFolders_OnComposeWindowInit, false);
 // listen for compose-send-message event
-document.getElementById("msgcomposeWindow").addEventListener("compose-send-message", asdfUpdateDraftFolder, false);
+document.getElementById("msgcomposeWindow").addEventListener("compose-send-message", autoSaveDraftsFolders_UpdateDraftFolder, false);
 // TODO add close listener to unregister other listeners
-document.getElementById("msgcomposeWindow").addEventListener("unload", asdfOnComposeWindowUnload, false);
+document.getElementById("msgcomposeWindow").addEventListener("unload", autoSaveDraftsFolders_OnComposeWindowUnload, false);

@@ -1,104 +1,122 @@
-var asdf_gAutoSaveDraftsRadioElemChoice;
-var asdf_gAutoSaveDraftsRadioElemChoiceLocked;
+var autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoice;
+var autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoiceLocked;
 
-var asdf = {
-  onLoad: function() {
+var autoSaveDraftsFolders = {
+  onLoad: function () {
     // initialization code
     this.initialized = true;
-    this.strings = document.getElementById("asdf-strings");	
+    this.strings = document.getElementById("autoSaveDraftsFolders-strings");
     // add support for preferences
-    this.prefs = Components.classes["@mozilla.org/preferences-service;1"]  
-        .getService(Components.interfaces.nsIPrefService)  
-        .getBranch("extensions.asdf.");  
-    this.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);  
-	  this.prefs.addObserver("", this, false); 	     
+    this.prefs = Components.classes["@mozilla.org/preferences-service;1"]
+        .getService(Components.interfaces.nsIPrefService)
+        .getBranch("extensions.autoSaveDraftsFolders.");
+    this.prefs.QueryInterface(Components.interfaces.nsIPrefBranch2);
+	  this.prefs.addObserver("", this, false);
   },
-  
-  onUnload: function() {    
+
+  onUnload: function () {
     // cleanup preferences
-    this.prefs.removeObserver("", this);  
+    this.prefs.removeObserver("", this);
   },
-  
-  observe: function(subject, topic, data) {  
-    if (topic != "nsPref:changed") {  
+
+  observe: function (subject, topic, data) {
+    if (topic != "nsPref:changed") {
       return; // only need to act on pref change
-    }  
+    }
     // process change	
-    switch(data) {  
+    switch (data) {
       //case "showDeleteButton":  
          //this.updateJunkSpamButtons();
          //break;  
-      }  
-  }, 
-  
+    }
+  },
+
   // Set radio element choices and picker states
- setPickersState: function (enablePickerId, disablePickerId, event)
- {
-   SetPickerEnabling(enablePickerId, disablePickerId);
- 
-   var radioElemValue = event.target.value;
- 
-   switch (event.target.id) {     
-     case "asdfAutoSaveDraft_selectAccount":
-     case "asdfAutoSaveDraft_selectFolder":
-       asdf_gAutoSaveDraftsRadioElemChoice = radioElemValue;
-       break;     
-     default:
-       dump("Error in setting picker state.\n");
-       return;
-   }
- },
-  
-  noteSelectionChange: function(type, event) {
-    var checkedElem = document.getElementById("asdfAutoSaveDraft_select" + type);
+  setPickersState: function (enablePickerId, disablePickerId, event) {
+    SetPickerEnabling(enablePickerId, disablePickerId);
+
+    var radioElemValue = event.target.value;
+
+    switch (event.target.id) {
+    case "autoSaveDraftsFolders_selectAccount":
+    case "autoSaveDraftsFolders_selectFolder":
+      autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoice = radioElemValue;
+      break;
+    default:
+      dump("Error in setting picker state.\n");
+      return;
+    }
+  },
+
+  noteSelectionChange: function (type, event) {
+    var checkedElem =
+      document.getElementById("autoSaveDraftsFolders_select" + type);
     var folder = event.target._folder;
     var modeValue = checkedElem.value;
     var radioGroup = checkedElem.radioGroup.getAttribute("id");
     var picker;
-    asdf_gAutoSaveDraftsRadioElemChoice = modeValue;
-    asdf_gAutoSaveDraftsRadioElemChoice = modeValue;
-    picker = document.getElementById("asdfAutoSaveDrafts" + type + "Picker");
+    autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoice = modeValue;
+    autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoice = modeValue;
+    picker = document.getElementById("autoSaveDraftsFolders_AutoSaveDrafts" + type + "Picker");
     picker.folder = folder;
     picker.setAttribute("label", folder.prettyName);
   }
 };
 
 // override onInitCopiesAndFolders method
-asdf.base_onInitCopiesAndFolders = onInitCopiesAndFolders;
-onInitCopiesAndFolders = function() {
-  asdf.base_onInitCopiesAndFolders();
-  SetFolderDisplay(asdf_gAutoSaveDraftsRadioElemChoice, asdf_gAutoSaveDraftsRadioElemChoiceLocked,
-                      "asdfAutoSaveDraft",
-                      "asdfAutoSaveDraftsAccountPicker",
-                      "identity.asdfAutoSaveDraftFolder",
-                      "asdfAutoSaveDraftsFolderPicker");
-} // var asdf
+autoSaveDraftsFolders.base_onInitCopiesAndFolders = onInitCopiesAndFolders;
+onInitCopiesAndFolders = function () {
+  autoSaveDraftsFolders.base_onInitCopiesAndFolders();
+  SetFolderDisplay(
+    autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoice,
+    autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoiceLocked,
+    "autoSaveDraftsFolders",
+    "autoSaveDraftsFolders_AutoSaveDraftsAccountPicker",
+    "identity.autoSaveDraftsFolders_AutoSaveDraftFolder",
+    "autoSaveDraftsFolders_AutoSaveDraftsFolderPicker"
+  );
+}; // var autoSaveDraftsFolders
 
 // override SetGlobalRadioElemChoices method
-asdf.base_SetGlobalRadioElemChoices = SetGlobalRadioElemChoices;
-SetGlobalRadioElemChoices = function() {
-  asdf.base_SetGlobalRadioElemChoices();
-  var pickerModeElement = document.getElementById("identity.asdfAutoSaveDraftsFolderPickerMode");
-  asdf_gAutoSaveDraftsRadioElemChoice = pickerModeElement.getAttribute("value");
-  asdf_gAutoSaveDraftsRadioElemChoiceLocked = pickerModeElement.getAttribute("disabled");
-  if (!asdf_gAutoSaveDraftsRadioElemChoice) 
-    asdf_gAutoSaveDraftsRadioElemChoice = gDefaultPickerMode;
-}
+autoSaveDraftsFolders.base_SetGlobalRadioElemChoices =
+  SetGlobalRadioElemChoices;
+SetGlobalRadioElemChoices = function () {
+  autoSaveDraftsFolders.base_SetGlobalRadioElemChoices();
+  var pickerModeElement =
+    document.getElementById("identity.autoSaveDraftsFolders_AutoSaveDraftsFolderPickerMode");
+  autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoice =
+    pickerModeElement.getAttribute("value");
+  autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoiceLocked =
+    pickerModeElement.getAttribute("disabled");
+  if (!autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoice) {
+    autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoice = gDefaultPickerMode;
+  }
+};
 
 // override onSaveCopiesAndFolders method
-asdf.base_onSaveCopiesAndFolders = onSaveCopiesAndFolders;
-onSaveCopiesAndFolders = function() {
-  asdf.base_onSaveCopiesAndFolders();
-  SaveFolderSettings( asdf_gAutoSaveDraftsRadioElemChoice,
-                        "asdfAutoSaveDrafts",
-                        gDraftsFolderWithDelim,
-                        "asdfAutoSaveDraftsAccountPicker",
-                        "asdfAutoSaveDraftsFolderPicker",
-                        "identity.asdfAutoSaveDraftFolder",
-                        "identity.asdfAutoSaveDraftsFolderPickerMode" );
-}
+autoSaveDraftsFolders.base_onSaveCopiesAndFolders = onSaveCopiesAndFolders;
+onSaveCopiesAndFolders = function () {
+  autoSaveDraftsFolders.base_onSaveCopiesAndFolders();
+  SaveFolderSettings(
+    autoSaveDraftsFolders_gAutoSaveDraftsRadioElemChoice,
+    "autoSaveDraftsFolders_radioGroup",
+    gDraftsFolderWithDelim,
+    "autoSaveDraftsFolders_AutoSaveDraftsAccountPicker",
+    "autoSaveDraftsFolders_AutoSaveDraftsFolderPicker",
+    "identity.autoSaveDraftsFolders_AutoSaveDraftFolder",
+    "identity.autoSaveDraftsFolders_AutoSaveDraftsFolderPickerMode"
+  );
+};
 
 // listen for initial window load event
-window.addEventListener("load", function () { asdf.onLoad(); }, false);
+window.addEventListener(
+  "load",
+  function () { autoSaveDraftsFolders.onLoad(); },
+  false
+);
 // listen for window unload event
-window.addEventListener("unload", function () { asdf.onUnload(); }, false);
+window.addEventListener(
+  "unload",
+  function () { autoSaveDraftsFolders.onUnload(); },
+  false
+);
