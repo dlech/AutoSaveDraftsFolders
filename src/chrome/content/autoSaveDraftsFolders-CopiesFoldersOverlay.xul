@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE overlay [
-<!ENTITY % asdfCopiesFoldersDTD SYSTEM "chrome://asdf/locale/asdfCopiesFoldersOverlay.dtd"> %asdfCopiesFoldersDTD;
+<!ENTITY % autoSaveDraftsFolders-CopiesFoldersDTD SYSTEM "chrome://autoSaveDraftsFolders/locale/autoSaveDraftsFolders-CopiesFoldersOverlay.dtd"> %autoSaveDraftsFolders-CopiesFoldersDTD;
 <!ENTITY % amCopiesDTD SYSTEM "chrome://messenger/locale/am-copies.dtd"> %amCopiesDTD;
 <!ENTITY % msgFolderPickerDTD SYSTEM "chrome://messenger/locale/msgFolderPickerOverlay.dtd"> %msgFolderPickerDTD;
 ]>
 <overlay id="asdfCopiesFoldersOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script src="chrome://asdf/content/asdfCopiesFoldersOverlay.js"/>
+  <script src="chrome://autoSaveDraftsFolders/content/autoSaveDraftsFolders-CopiesFoldersOverlay.js"/>
   <vbox id="copiesAndFolders">
     <label hidden="true" wsm_persist="true" 
 	    id="identity.asdfAutoSaveDraftFolder" 
