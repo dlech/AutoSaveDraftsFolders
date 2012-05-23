@@ -8,7 +8,7 @@
         <em:name>Auto Save Drafts Folders</em:name>
         <em:description>Allows auto saved drafts to be stored in a separate folder from manually saved drafts.</em:description>
         <em:creator>David Lechner</em:creator>
-		<em:contributor>Fabian Haibl</contributor>
+		<em:contributor>Fabian Haibl</em:contributor>
         <em:targetApplication>
             <Description>
                 <!-- Thunderbird -->
