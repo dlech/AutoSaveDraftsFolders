@@ -4,7 +4,7 @@
     <Description about="urn:mozilla:install-manifest">
         <em:type>2</em:type> <!-- 2 : Extension -->
         <em:id>asdf@d.lech</em:id>
-        <em:version>0.2.0</em:version>
+        <em:version>0.2.1</em:version>
         <em:name>Auto Save Drafts Folders</em:name>
         <em:description>Allows auto saved drafts to be stored in a separate folder from manually saved drafts.</em:description>
         <em:creator>David Lechner</em:creator>

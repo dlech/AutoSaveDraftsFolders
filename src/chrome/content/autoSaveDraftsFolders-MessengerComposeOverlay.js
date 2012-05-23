@@ -92,8 +92,8 @@ var autoSaveDraftsFolders_OnComposeWindowUnload = function() {
 }
 
 // listen for compose-window-init
-document.getElementById("msgcomposeWindow").addEventListener("compose-window-init", autoSaveDraftsFolders_OnComposeWindowInit, false);
+window.addEventListener("compose-window-init", autoSaveDraftsFolders_OnComposeWindowInit, true);
 // listen for compose-send-message event
-document.getElementById("msgcomposeWindow").addEventListener("compose-send-message", autoSaveDraftsFolders_UpdateDraftFolder, false);
+window.addEventListener("compose-send-message", autoSaveDraftsFolders_UpdateDraftFolder, true);
 // TODO add close listener to unregister other listeners
-document.getElementById("msgcomposeWindow").addEventListener("unload", autoSaveDraftsFolders_OnComposeWindowUnload, false);
+window.addEventListener("unload", autoSaveDraftsFolders_OnComposeWindowUnload, false);
