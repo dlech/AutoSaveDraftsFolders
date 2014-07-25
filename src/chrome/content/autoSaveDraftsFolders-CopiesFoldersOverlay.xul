@@ -5,7 +5,7 @@
 <!ENTITY % msgFolderPickerDTD SYSTEM "chrome://messenger/locale/msgFolderPickerOverlay.dtd"> %msgFolderPickerDTD;
 ]>
 <overlay id="autoSaveDraftsFolders-copiesFoldersOverlay" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
-  <script src="chrome://autoSaveDraftsFolders/content/autoSaveDraftsFolders-CopiesFoldersOverlay.js"/>
+  <script type="application/javascript" src="chrome://autoSaveDraftsFolders/content/autoSaveDraftsFolders-CopiesFoldersOverlay.js"/>
   <vbox id="copiesAndFolders">
     <label hidden="true" wsm_persist="true" 
 	    id="identity.autoSaveDraftsFolders_AutoSaveDraftFolder" 
@@ -36,11 +36,13 @@
                 oncommand="autoSaveDraftsFolders.setPickersState('autoSaveDraftsFolders_AutoSaveDraftsAccountPicker', 'autoSaveDraftsFolders_AutoSaveDraftsFolderPicker', event)"
                 value="0" label="&draftsFolderOn.label;"
                 accesskey="&draftsFolderOn.accesskey;"/>
-            <menulist id="autoSaveDraftsFolders_AutoSaveDraftsAccountPicker"
-                aria-labelledby="autoSaveDraftsFolders_selectAccount"
-                oncommand="autoSaveDraftsFolders.noteSelectionChange('Account', event)">
-              <menupopup id="msgDraftAccountPopup" type="folder" mode="filing"
-                  expandFolders="false"/>
+              <menulist id="autoSaveDraftsFolders_AutoSaveDraftsAccountPicker"
+                  class="folderMenuItem"
+                  aria-labelledby="autoSaveDraftsFolders_selectAccount">
+                <menupopup id="autoSaveDraftsFolders_msgDraftAccountPopup"
+                    type="folder" mode="filing"
+                    expandFolders="false"
+                    oncommand="autoSaveDraftsFolders.noteSelectionChange('Account', event)"/>
             </menulist>
           </row>
           <row align="center">
@@ -49,12 +51,14 @@
                 value="1" label="&draftInOtherFolder.label;"
                 accesskey="&draftInOtherFolder.accesskey;"/>
             <menulist id="autoSaveDraftsFolders_AutoSaveDraftsFolderPicker"
+                class="folderMenuItem"
                 aria-labelledby="autoSaveDraftsFolders_selectFolder"
-                oncommand="autoSaveDraftsFolders.noteSelectionChange('Folder', event)">
-             <menupopup id="msgDraftFolderPopup" type="folder" mode="filing"
+                displayformat="verbose">
+              <menupopup id="autoSaveDraftsFolders_msgDraftFolderPopup"
+                  type="folder" mode="filing"
                   class="menulist-menupopup"
                   showFileHereLabel="true"
-                  fileHereLabel="&filemessageschoosethis.label;"/>
+                  oncommand="autoSaveDraftsFolders.noteSelectionChange('Folder', event)"/>
             </menulist>
           </row>
         </rows>
