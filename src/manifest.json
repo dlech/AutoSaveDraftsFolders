@@ -1,0 +1,21 @@
+{
+  "applications": {
+    "gecko": {
+      "id": "asdf@d.lech",
+      "strict_min_version": "68.0",
+      "strict_max_version": "68.*"
+    }
+  },
+  "manifest_version": 2,
+  "name": "Auto Save Drafts Folders",
+  "version": "1.0",
+  "author": "David Lechner",
+  "homepage_url": "https://github.com/dlech/AutoSaveDraftsFolders",
+  "description": "Allows auto saved drafts to be stored in a separate folder from manually saved drafts",
+  "icons": {
+    "32": "chrome/skin/asdf.png"
+  },
+  "legacy": {
+    "type": "xul"
+  }
+}
