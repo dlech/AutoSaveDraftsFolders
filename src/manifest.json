@@ -8,7 +8,7 @@
   },
   "manifest_version": 2,
   "name": "Auto Save Drafts Folders",
-  "version": "1.0",
+  "version": "1.0.0",
   "author": "David Lechner",
   "homepage_url": "https://github.com/dlech/AutoSaveDraftsFolders",
   "description": "Allows auto saved drafts to be stored in a separate folder from manually saved drafts",
