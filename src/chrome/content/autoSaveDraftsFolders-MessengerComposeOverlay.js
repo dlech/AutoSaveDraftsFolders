@@ -7,7 +7,7 @@ var autoSaveDraftsFolders_UpdateDraftFolder = function() {
     // get message save type
     var msgType = document.getElementById("msgcomposeWindow").getAttribute("msgtype");  
     // if this is not an auto save, they we don't do anything
-    if (msgType != nsIMsgCompDeliverMode.AutoSaveAsDraft)
+    if (msgType != Components.interfaces.nsIMsgCompDeliverMode.AutoSaveAsDraft)
       return;
     // compose also uses autosave when user closes compose window and selects 'save'
     // in the dialog box. Here, we should actually save to the normal drafts folder
@@ -69,7 +69,7 @@ var autoSaveDraftsFolders_gMsgComposeStateListener = {
         //alert("Folder done:\n" + autoSaveDraftsFolders_gDraftFolderIdentityBackup.draftFolder);
         //alert("saved folder:\n" + gMsgCompose.savedFolderURI);
         // get folder object - should be auto save folder
-        var folder = MailUtils.getFolderForURI(folderName, false);  
+        var folder = MailUtils.getExistingFolder(folderName);  
         // set draft flag on folder - it was cleared by restoring the normal drafts folder 
         folder.setFlag(Components.interfaces.nsMsgFolderFlags.Drafts);
       }      
@@ -96,4 +96,4 @@ window.addEventListener("compose-window-init", autoSaveDraftsFolders_OnComposeWi
 // listen for compose-send-message event
 window.addEventListener("compose-send-message", autoSaveDraftsFolders_UpdateDraftFolder, true);
 // TODO add close listener to unregister other listeners
-window.addEventListener("unload", autoSaveDraftsFolders_OnComposeWindowUnload, false);
+window.addEventListener("compose-window-unload", autoSaveDraftsFolders_OnComposeWindowUnload, false);

@@ -40,7 +40,7 @@
                   class="folderMenuItem"
                   aria-labelledby="autoSaveDraftsFolders_selectAccount">
                 <menupopup id="autoSaveDraftsFolders_msgDraftAccountPopup"
-                    type="folder" mode="filing"
+                    is="folder-menupopup"  mode="filing"
                     expandFolders="false"
                     oncommand="autoSaveDraftsFolders.noteSelectionChange('Account', event)"/>
             </menulist>
@@ -55,7 +55,7 @@
                 aria-labelledby="autoSaveDraftsFolders_selectFolder"
                 displayformat="verbose">
               <menupopup id="autoSaveDraftsFolders_msgDraftFolderPopup"
-                  type="folder" mode="filing"
+                  is="folder-menupopup"  mode="filing"
                   class="menulist-menupopup"
                   showFileHereLabel="true"
                   oncommand="autoSaveDraftsFolders.noteSelectionChange('Folder', event)"/>
